@@ -9,12 +9,12 @@ export const SITE = {
   signature: 'Votre villa, entre de bonnes mains.',
   complement: 'Un seul interlocuteur s’occupe de tout, de la première réservation au départ du dernier voyageur.',
   baseline: 'Le réseau de concierges de villas',
-  email: 'contact@amanihost.com', // À CONFIRMER
+  email: 'simon@iasama.com',
   editeur: {
-    // À COMPLÉTER : identité légale de l'éditeur pour les mentions légales
-    raisonSociale: '[raison sociale à compléter]',
-    siret: '[SIRET à compléter]',
-    adresse: '[adresse à compléter]',
+    // Éditeur : Simon Amaniera, entrepreneur individuel, nom commercial IASAMA (SIREN 933 359 317)
+    raisonSociale: 'Simon Amaniera, entrepreneur individuel (EI), nom commercial IASAMA',
+    siret: '933 359 317 00015',
+    adresse: '60 rue François Ier, 75008 Paris',
     directeurPublication: 'Simon Amaniera',
     hebergeur: 'Cloudflare, Inc., 101 Townsend St, San Francisco, CA 94107, États-Unis',
   },
