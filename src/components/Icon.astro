@@ -1,0 +1,17 @@
+---
+// Icônes au trait, dessinées pour le site (aucune dépendance)
+export interface Props { name: string; size?: number }
+const { name, size = 28 } = Astro.props;
+const paths: Record<string, string> = {
+  annonce: 'M4 5h16v14H4z M4 9h16 M8 13h5 M8 16h8',
+  message: 'M4 5h16v11H9l-5 4z M8 10h8 M8 13h5',
+  cle: 'M15 9a4 4 0 1 1-3.6 5.7L4 21v-3h2v-2h2l3.4-3.4A4 4 0 0 1 15 9z M16 8h.01',
+  linge: 'M3 8l4-3h3a2 2 0 0 0 4 0h3l4 3-3 3-2-1v9H8v-9l-2 1z',
+  piscine: 'M3 17c2 0 2-1.5 4.5-1.5S9.5 17 12 17s2-1.5 4.5-1.5S19 17 21 17 M3 21c2 0 2-1.5 4.5-1.5S9.5 21 12 21s2-1.5 4.5-1.5S19 21 21 21 M8 14V5a2 2 0 0 1 4 0 M16 14V5a2 2 0 0 0-4 0 M8 9h8',
+  outil: 'M14.7 6.3a4 4 0 0 0 5 5L21 13l-8 8-3-3 8-8 M14.7 6.3L13 4.6a4 4 0 0 0-5.6 5.6L3 14.6 6.4 18l4.4-4.4',
+  rapport: 'M5 3h10l4 4v14H5z M15 3v4h4 M8 17v-3 M12 17v-6 M16 17v-4',
+  regle: 'M12 3l7 3v5c0 5-3 8.5-7 10-4-1.5-7-5-7-10V6z M9 12l2 2 4-4',
+  check: 'M5 12l4 4 10-10',
+};
+---
+<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={paths[name] ?? paths.check} /></svg>

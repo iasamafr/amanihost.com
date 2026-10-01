@@ -1,0 +1,93 @@
+---
+import Base from '../../layouts/Base.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import Simulator from '../../components/Simulator.astro';
+import CommuneNav from '../../components/CommuneNav.astro';
+import RendezVous from '../../components/RendezVous.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { SECTEURS, SITE } from '../../data/site';
+import { COMMUNES, sousPages } from '../../data/communes';
+import type { Commune, SousPage } from '../../data/types';
+
+export function getStaticPaths() {
+  return COMMUNES.flatMap((c) =>
+    sousPages(c).map((p) => ({ params: { slug: c.slug, page: p.slug }, props: { c, p } }))
+  );
+}
+
+const { c, p } = Astro.props as { c: Commune; p: SousPage };
+const s = SECTEURS.find((x) => x.slug === c.secteur)!;
+const estQuartier = c.quartiers.some((q) => q.slug === p.slug);
+const estVoisine = c.voisines.some((v) => v.slug === p.slug);
+
+const ld: object[] = [];
+if (p.projet !== 'vente') {
+  ld.push({
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: p.h1,
+    serviceType: 'Gestion locative saisonnière de villas',
+    provider: { '@id': `${SITE.url}/#organization` },
+    areaServed: { '@type': 'Place', name: estVoisine ? p.menu : estQuartier ? `${p.menu}, ${c.nom}` : c.nom },
+    url: `${SITE.url}/${c.slug}/${p.slug}/`,
+  });
+}
+
+// Liens vers les pages sœurs, pour le maillage interne en fin d'article
+const soeurs = c.pages.filter((x) => x.slug !== p.slug).slice(0, 3);
+---
+<Base
+  title={p.title}
+  description={p.description}
+  path={`/${c.slug}/${p.slug}/`}
+  crumbs={[
+    { nom: s.nom, path: `/${s.slug}/` },
+    { nom: c.nom, path: `/${c.slug}/` },
+    { nom: p.menu, path: `/${c.slug}/${p.slug}/` },
+  ]}
+  jsonld={ld}
+  draft={c.aRelire}
+>
+  <section class="hero wrap">
+    <p class="eyebrow">{estVoisine ? `Près de ${c.nom}` : estQuartier ? `Quartier de ${c.nom}` : `Conciergerie ${c.nom}`}</p>
+    <h1>{p.h1}</h1>
+    <p class="chapo">{p.chapo}</p>
+  </section>
+
+  <div class="body wrap">
+    <article class="prose">
+      {p.type === 'simulateur' && <Simulator commune={c} />}
+      {p.sections.map((sec) => (
+        <section>
+          <h2>{sec.h2}</h2>
+          {sec.paragraphes.map((t) => <p>{t}</p>)}
+        </section>
+      ))}
+      <section>
+        <h2>À lire aussi</h2>
+        <ul class="links">
+          <li><a href={`/${c.slug}/`}>Conciergerie de villas à {c.nom}</a></li>
+          {soeurs.map((x) => <li><a href={`/${c.slug}/${x.slug}/`}>{x.h1}</a></li>)}
+        </ul>
+      </section>
+    </article>
+    <aside class="aside">
+      <LeadForm
+        commune={c.slug}
+        communeNom={estVoisine ? p.menu : c.nom}
+        projet={p.projet ?? 'gestion'}
+        titre={p.projet === 'vente' ? 'Être accompagné pour vendre' : 'Rencontrer votre concierge'}
+      />
+      <CommuneNav commune={c} />
+    </aside>
+  </div>
+  {p.projet !== 'vente' && <RendezVous commune={estVoisine ? p.menu : c.nom} />}
+  {p.type !== 'simulateur' && p.projet !== 'vente' && (
+    <CtaBand
+      titre={`Combien peut rapporter votre villa à ${estVoisine ? p.menu : c.nom} ?`}
+      texte="Une première estimation en deux minutes, puis une proposition précise après la visite."
+      href={`/${c.slug}/estimation-revenus/`}
+      bouton="Estimer mes revenus"
+    />
+  )}
+</Base>

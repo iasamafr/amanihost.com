@@ -1,0 +1,34 @@
+---
+import { SECTEURS } from '../data/site';
+import { COMMUNES } from '../data/communes';
+export interface Props { titre?: string; intro?: string }
+const {
+  titre = 'Nos secteurs',
+  intro = 'Nous ouvrons commune par commune, dans les destinations de villas et de chalets les plus recherchées de France.',
+} = Astro.props;
+const ouvertes = new Map(COMMUNES.map((c) => [c.nom, c.slug]));
+---
+<section class="band" id="secteurs">
+  <div class="wrap stack-lg">
+    <div class="head">
+      <p class="eyebrow">Où nous trouver</p>
+      <h2>{titre}</h2>
+      <p class="lead">{intro}</p>
+    </div>
+    <div class="dest">
+      {SECTEURS.map((s) => (
+        <div class="dest-col">
+          <p class="dest-region">{s.region}</p>
+          <h3><a href={`/${s.slug}/`}>{s.nom}</a></h3>
+          <ul>
+            {s.communes.map((n) =>
+              ouvertes.has(n)
+                ? <li><a href={`/${ouvertes.get(n)}/`}>{n}</a></li>
+                : <li class="soon">{n} <small>bientôt</small></li>
+            )}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

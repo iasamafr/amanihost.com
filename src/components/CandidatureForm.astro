@@ -1,0 +1,71 @@
+---
+const id = 'cand';
+---
+<form class="cand-form panel" id={id} novalidate>
+  <h2>Votre candidature</h2>
+  <div class="row2">
+    <div class="field"><label for={`${id}-nom`}>Nom et prénom</label><input id={`${id}-nom`} name="nom" type="text" autocomplete="name" required /></div>
+    <div class="field"><label for={`${id}-ville`}>Ville souhaitée</label><input id={`${id}-ville`} name="ville" type="text" placeholder="Ex. Sainte-Maxime" required /></div>
+  </div>
+  <div class="row2">
+    <div class="field"><label for={`${id}-email`}>E-mail</label><input id={`${id}-email`} name="email" type="email" autocomplete="email" required /></div>
+    <div class="field"><label for={`${id}-tel`}>Téléphone</label><input id={`${id}-tel`} name="telephone" type="tel" autocomplete="tel" required /></div>
+  </div>
+  <fieldset>
+    <legend>Vivez-vous sur cette ville ?</legend>
+    <div class="choices">
+      <label><input type="radio" name="residence" value="annee" /> Toute l’année</label>
+      <label><input type="radio" name="residence" value="saison" /> Pendant la saison</label>
+      <label><input type="radio" name="residence" value="projet" /> J’ai le projet de m’y installer</label>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>Votre niveau d’anglais</legend>
+    <div class="choices">
+      <label><input type="radio" name="anglais" value="courant" /> Courant</label>
+      <label><input type="radio" name="anglais" value="correct" /> Correct</label>
+      <label><input type="radio" name="anglais" value="a-apprendre" /> À apprendre</label>
+    </div>
+  </fieldset>
+  <div class="field">
+    <label for={`${id}-parcours`}>Votre parcours en quelques lignes</label>
+    <textarea id={`${id}-parcours`} name="parcours" rows="3" placeholder="Expérience, métier actuel, ce qui vous attire dans ce métier"></textarea>
+  </div>
+  <div class="field">
+    <label for={`${id}-demarrage`}>Quand souhaitez-vous démarrer ?</label>
+    <select id={`${id}-demarrage`} name="demarrage">
+      <option value="">Choisir</option>
+      <option value="saison-prochaine">Pour la saison prochaine</option>
+      <option value="dans-l-annee">Dans l’année</option>
+      <option value="reflexion">Je me renseigne</option>
+    </select>
+  </div>
+  <label class="consent">
+    <input type="checkbox" name="consentement" value="oui" required />
+    <span>J’accepte qu’AmaniHost utilise ces informations pour étudier ma candidature et me recontacter. <a href="/mentions-legales/#donnees">En savoir plus</a></span>
+  </label>
+  <input type="text" name="site_web" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px" />
+  <button class="btn btn-primary" type="submit">Envoyer ma candidature</button>
+  <p class="msg" role="status" hidden></p>
+</form>
+
+<script>
+  const f = document.querySelector<HTMLFormElement>('form.cand-form');
+  if (f) {
+    const msg = f.querySelector<HTMLParagraphElement>('.msg')!;
+    const show = (t: string, ok: boolean) => { msg.textContent = t; msg.className = `msg ${ok ? 'ok' : 'err'}`; msg.hidden = false; };
+    f.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fd = new FormData(f);
+      if (!fd.get('nom') || !fd.get('email') || !fd.get('telephone') || !fd.get('ville')) return show('Indiquez votre nom, la ville souhaitée, votre e-mail et votre téléphone.', false);
+      if (!fd.get('consentement')) return show('Cochez la case d’accord pour que nous puissions étudier votre candidature.', false);
+      const b = f.querySelector('button')!; b.disabled = true;
+      try {
+        const res = await fetch('/api/candidature', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(fd.entries())) });
+        if (!res.ok) throw new Error(String(res.status));
+        f.reset(); show('Candidature envoyée. Nous vous recontactons sous une semaine.', true);
+      } catch { show('L’envoi n’a pas abouti. Réessayez dans un instant ou écrivez-nous depuis la page Contact.', false); }
+      finally { b.disabled = false; }
+    });
+  }
+</script>

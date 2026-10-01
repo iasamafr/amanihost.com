@@ -1,0 +1,21 @@
+---
+import { QUESTIONS } from '../data/site';
+export interface Props { commune?: string }
+const { commune } = Astro.props;
+---
+<section class="band band-navy">
+  <div class="wrap stack-lg">
+    <div class="head">
+      <p class="eyebrow">Vos questions</p>
+      <h2>Ce que les propriétaires nous demandent{commune ? ` à ${commune}` : ''} au premier rendez-vous</h2>
+    </div>
+    <div class="qa">
+      {QUESTIONS.map((x) => (
+        <div class="qa-item">
+          <h3>« {x.q} »</h3>
+          <p>{x.r}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

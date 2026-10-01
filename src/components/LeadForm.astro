@@ -1,0 +1,125 @@
+---
+export interface Props {
+  commune: string; // slug
+  communeNom: string;
+  projet?: 'gestion' | 'location' | 'vente';
+  titre?: string;
+}
+const { commune, communeNom, projet = 'gestion', titre = 'Rencontrer votre concierge' } = Astro.props;
+const page = Astro.url.pathname;
+const id = `lead-${commune}`;
+---
+<div class="panel" id="formulaire">
+  <h2>{titre}</h2>
+  <p style="font-size:.92rem;color:var(--muted)">
+    {projet === 'vente'
+      ? `Décrivez votre villa à ${communeNom}. Un professionnel de l'immobilier local vous recontacte.`
+      : `Parlez-nous de votre villa à ${communeNom}. Votre concierge vous rappelle pour convenir d’un rendez-vous chez vous.`}
+  </p>
+  <form class="lead-form" id={id} data-commune={commune} data-page={page} novalidate>
+    <fieldset>
+      <legend>Votre projet</legend>
+      <div class="choices">
+        <label><input type="radio" name="projet" value="gestion" checked={projet === 'gestion'} /> Confier la gestion</label>
+        <label><input type="radio" name="projet" value="location" checked={projet === 'location'} /> Première location</label>
+        <label><input type="radio" name="projet" value="vente" checked={projet === 'vente'} /> Vendre</label>
+      </div>
+    </fieldset>
+    <div class="row2">
+      <div class="field">
+        <label for={`${id}-chambres`}>Chambres</label>
+        <select id={`${id}-chambres`} name="chambres">
+          <option value="">Choisir</option>
+          <option>2</option><option>3</option><option>4</option><option>5</option><option value="6">6 et plus</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for={`${id}-delai`}>Démarrage</label>
+        <select id={`${id}-delai`} name="delai">
+          <option value="">Choisir</option>
+          <option value="saison-prochaine">Saison prochaine</option>
+          <option value="3-mois">Sous 3 mois</option>
+          <option value="reflexion">Je me renseigne</option>
+        </select>
+      </div>
+    </div>
+    <fieldset>
+      <legend>Équipements</legend>
+      <div class="choices">
+        <label><input type="checkbox" name="piscine" value="oui" /> Piscine</label>
+        <label><input type="checkbox" name="climatisation" value="oui" /> Climatisation</label>
+        <label><input type="checkbox" name="vue_mer" value="oui" /> Vue mer</label>
+      </div>
+    </fieldset>
+    <div class="field">
+      <label for={`${id}-nom`}>Nom</label>
+      <input id={`${id}-nom`} name="nom" type="text" autocomplete="name" required />
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label for={`${id}-email`}>E-mail</label>
+        <input id={`${id}-email`} name="email" type="email" autocomplete="email" required />
+      </div>
+      <div class="field">
+        <label for={`${id}-tel`}>Téléphone</label>
+        <input id={`${id}-tel`} name="telephone" type="tel" autocomplete="tel" required />
+      </div>
+    </div>
+    <div class="field">
+      <label for={`${id}-msg`}>Adresse ou quartier de la villa (facultatif)</label>
+      <textarea id={`${id}-msg`} name="message" rows="2"></textarea>
+    </div>
+    <label class="consent">
+      <input type="checkbox" name="consentement" value="oui" required />
+      <span>J'accepte qu'AmaniHost transmette ma demande au concierge de {communeNom}, ou à un professionnel de l'immobilier local pour un projet de vente, qui me recontactera à ce sujet. <a href="/mentions-legales/#donnees">En savoir plus</a></span>
+    </label>
+    <input type="text" name="site_web" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px" />
+    <button class="btn btn-primary" type="submit">Demander un rendez-vous</button>
+    <p class="msg" role="status" hidden></p>
+  </form>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('form.lead-form').forEach((form) => {
+    const msg = form.querySelector<HTMLParagraphElement>('.msg')!;
+    const show = (text: string, ok: boolean) => {
+      msg.textContent = text;
+      msg.className = `msg ${ok ? 'ok' : 'err'}`;
+      msg.hidden = false;
+    };
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      if (!fd.get('nom') || !fd.get('email') || !fd.get('telephone')) {
+        return show('Indiquez votre nom, votre e-mail et votre téléphone pour être recontacté.', false);
+      }
+      if (!fd.get('consentement')) {
+        return show('Cochez la case d’accord pour que votre demande puisse être transmise.', false);
+      }
+      const data = Object.fromEntries(fd.entries());
+      const payload = { ...data, commune: form.dataset.commune, page: form.dataset.page };
+      const button = form.querySelector('button')!;
+      button.disabled = true;
+      try {
+        const res = await fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        form.reset();
+        show('Demande envoyée. Votre concierge vous rappelle pour fixer le rendez-vous.', true);
+      } catch {
+        show('L’envoi n’a pas abouti. Réessayez dans un instant ou écrivez-nous depuis la page Contact.', false);
+      } finally {
+        button.disabled = false;
+      }
+    });
+  });
+
+  // Pré-remplissage depuis le simulateur
+  window.addEventListener('amani:simulation', (e) => {
+    const { chambres } = (e as CustomEvent).detail;
+    document.querySelectorAll<HTMLSelectElement>('form.lead-form select[name="chambres"]').forEach((s) => (s.value = chambres));
+  });
+</script>

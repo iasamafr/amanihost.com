@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../data/site';
+---
+<Base
+  title="Contact | AmaniHost"
+  description="Contacter AmaniHost, réseau de conciergeries de villas : propriétaires, conciergeries partenaires et candidats concierges."
+  path="/contact/"
+  crumbs={[{ nom: 'Contact', path: '/contact/' }]}
+>
+  <section class="hero wrap">
+    <h1>Contact</h1>
+    <p class="chapo">Propriétaire ou futur concierge : écrivez-nous à l'adresse ci-dessous en précisant votre commune.</p>
+    <p style="margin-top:20px;font-size:1.2rem"><b>{SITE.email}</b></p>
+    <p style="margin-top:8px;color:var(--muted)">Vous êtes propriétaire ? Le plus rapide est de passer par la page de votre commune : votre demande arrive directement chez votre concierge.</p>
+  </section>
+</Base>

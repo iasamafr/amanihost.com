@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../data/site';
+const e = SITE.editeur;
+---
+<Base
+  title="Mentions légales et données personnelles | AmaniHost"
+  description="Mentions légales du site amanihost.com et informations sur le traitement des données personnelles des demandes de propriétaires."
+  path="/mentions-legales/"
+  crumbs={[{ nom: 'Mentions légales', path: '/mentions-legales/' }]}
+  draft={true}
+>
+  <section class="hero wrap"><h1>Mentions légales et données personnelles</h1></section>
+  <div class="wrap" style="padding-block:40px 64px">
+    <div class="prose">
+      <section>
+        <h2>Éditeur</h2>
+        <p>{e.raisonSociale}, SIRET {e.siret}, {e.adresse}. Directeur de la publication : {e.directeurPublication}. Contact : {SITE.email}.</p>
+        <p>Hébergement : {e.hebergeur}.</p>
+      </section>
+      <section>
+        <h2>Activité</h2>
+        <p>AmaniHost est un réseau de concierges de villas. Dans chaque commune, la gestion des villas est assurée par un concierge indépendant qui exploite la marque AmaniHost sous licence. Les demandes de propriétaires sont transmises au concierge de la commune concernée, ou à un professionnel de l'immobilier local pour un projet de vente.</p>
+      </section>
+      <section id="donnees">
+        <h2>Données personnelles</h2>
+        <p>Les informations saisies dans les formulaires servent uniquement à traiter votre demande. Avec votre accord, elles sont transmises au concierge AmaniHost de la commune concernée, ou à un professionnel de l'immobilier local, qui vous recontacte à ce sujet. Elles sont conservées trois ans au plus après le dernier échange.</p>
+        <p>Vous pouvez demander l'accès, la rectification ou la suppression de vos données en écrivant à {SITE.email}. Vous pouvez aussi saisir la CNIL.</p>
+        <p>Le site n'utilise pas de cookies publicitaires. La mesure d'audience est anonyme.</p>
+      </section>
+    </div>
+  </div>
+</Base>

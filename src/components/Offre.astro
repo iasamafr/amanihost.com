@@ -1,0 +1,26 @@
+---
+import Icon from './Icon.astro';
+import { OFFRE } from '../data/site';
+export interface Props { commune?: string }
+const { commune } = Astro.props;
+---
+<section class="band">
+  <div class="wrap stack-lg">
+    <div class="head">
+      <p class="eyebrow">La gestion intégrale</p>
+      <h2>Tout ce qui concerne votre villa{commune ? ` à ${commune}` : ''}, pris en charge</h2>
+      <p class="lead">Une seule formule, complète. Vous profitez de votre maison quand vous le souhaitez ; le reste du temps, votre concierge s’occupe de tout.</p>
+    </div>
+    <div class="offre">
+      {OFFRE.map((o) => (
+        <div class="offre-col">
+          <span class="ico"><Icon name={o.icone} /></span>
+          <p class="verbe">{o.verbe}</p>
+          <h3>{o.titre}</h3>
+          <ul>{o.points.map((p) => <li>{p}</li>)}</ul>
+        </div>
+      ))}
+    </div>
+    <p class="aside-note">Autres formules sur demande, pour certaines maisons d’exception : gestion partagée, mandat de location.</p>
+  </div>
+</section>

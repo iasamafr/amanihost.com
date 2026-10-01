@@ -1,0 +1,19 @@
+---
+import { PAGES_CONCIERGE } from '../data/concierge';
+const current = Astro.url.pathname;
+const liens = [
+  ...PAGES_CONCIERGE.map((p) => ({ menu: p.menu, href: `/devenir-concierge/${p.slug ? p.slug + '/' : ''}` })),
+  { menu: 'Candidater', href: '/devenir-concierge/candidature/' },
+];
+---
+<nav class="panel" aria-label="Rubrique Devenir concierge">
+  <h3 style="font-size:1.1rem;margin-bottom:6px">Devenir concierge</h3>
+  <ul class="links">
+    {liens.map((l) => <li><a href={l.href} aria-current={current === l.href ? 'page' : undefined}>{l.menu}</a></li>)}
+  </ul>
+</nav>
+<div class="panel panel-navy">
+  <h3>Votre ville est-elle libre ?</h3>
+  <p>L’exclusivité est accordée par ville. Dites-nous laquelle vous intéresse.</p>
+  <a class="btn btn-gold" href="/devenir-concierge/candidature/">Candidater</a>
+</div>

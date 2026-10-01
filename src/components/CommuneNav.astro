@@ -1,0 +1,24 @@
+---
+import type { Commune } from '../data/types';
+export interface Props { commune: Commune }
+const { commune: c } = Astro.props;
+const current = Astro.url.pathname;
+const groupes = [
+  { titre: `Conciergerie ${c.nom}`, liens: [{ menu: 'Accueil', slug: '' }, ...c.pages] },
+  { titre: 'Quartiers', liens: c.quartiers },
+  { titre: 'Communes voisines', liens: c.voisines },
+].filter((g) => g.liens.length);
+---
+<nav class="panel" aria-label={`Rubrique ${c.nom}`}>
+  {groupes.map((g) => (
+    <div>
+      <h3 style="font-size:1.1rem;margin-bottom:6px">{g.titre}</h3>
+      <ul class="links">
+        {g.liens.map((l) => {
+          const href = `/${c.slug}/${l.slug ? l.slug + '/' : ''}`;
+          return <li><a href={href} aria-current={current === href ? 'page' : undefined}>{l.menu}</a></li>;
+        })}
+      </ul>
+    </div>
+  ))}
+</nav>

@@ -1,0 +1,54 @@
+---
+import type { Commune } from '../data/types';
+export interface Props { commune: Commune }
+const { commune } = Astro.props;
+const grille = commune.simulateur.semaineHauteSaisonParChambres;
+---
+<div class="panel simulateur" data-grille={JSON.stringify(grille)} data-commission={commune.simulateur.commission}>
+  <h2>Votre estimation</h2>
+  <div class="row2">
+    <div class="field">
+      <label for="sim-chambres">Chambres</label>
+      <select id="sim-chambres">
+        {Object.keys(grille).map((k, i) => <option value={k} selected={i === 1}>{k === '6' ? '6 et plus' : k}</option>)}
+      </select>
+    </div>
+    <div class="field">
+      <label for="sim-semaines">Semaines louées</label>
+      <input id="sim-semaines" type="number" min="1" max="20" value={commune.simulateur.semainesLoueesParDefaut} />
+    </div>
+  </div>
+  <div class="sim-result" aria-live="polite">
+    <span>Revenu locatif estimé par saison</span>
+    <b id="sim-brut">–</b>
+    <span id="sim-net">–</span>
+    <small>Estimation indicative pour une villa avec piscine à {commune.nom}, à affiner lors de la visite.</small>
+  </div>
+  <a class="btn btn-primary" href="#formulaire" id="sim-cta">Recevoir une estimation précise</a>
+</div>
+
+<script>
+  const box = document.querySelector<HTMLElement>('.simulateur');
+  if (box) {
+    const grille: Record<string, number> = JSON.parse(box.dataset.grille!);
+    const commission = Number(box.dataset.commission);
+    const ch = box.querySelector<HTMLSelectElement>('#sim-chambres')!;
+    const sem = box.querySelector<HTMLInputElement>('#sim-semaines')!;
+    const demande = new URLSearchParams(location.search).get('chambres');
+    if (demande && grille[demande]) ch.value = demande;
+    const eur = (n: number) => new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n);
+    const arrondi = (n: number) => Math.round(n / 500) * 500;
+    const calc = () => {
+      const semaines = Math.min(20, Math.max(1, Number(sem.value) || 1));
+      const brut = grille[ch.value] * semaines;
+      box.querySelector('#sim-brut')!.textContent = `${eur(arrondi(brut * 0.85))} à ${eur(arrondi(brut * 1.15))}`;
+      box.querySelector('#sim-net')!.textContent = `Soit ${eur(arrondi(brut * (1 - commission)))} environ après une commission de ${Math.round(commission * 100)} %`;
+    };
+    ch.addEventListener('change', calc);
+    sem.addEventListener('input', calc);
+    box.querySelector('#sim-cta')!.addEventListener('click', () => {
+      window.dispatchEvent(new CustomEvent('amani:simulation', { detail: { chambres: ch.value } }));
+    });
+    calc();
+  }
+</script>

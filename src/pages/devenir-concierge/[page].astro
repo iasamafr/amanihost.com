@@ -1,0 +1,9 @@
+---
+import ConciergePage from '../../layouts/ConciergePage.astro';
+import { PAGES_CONCIERGE, type PageConcierge } from '../../data/concierge';
+export function getStaticPaths() {
+  return PAGES_CONCIERGE.filter((p) => p.slug).map((p) => ({ params: { page: p.slug }, props: { p } }));
+}
+const { p } = Astro.props as { p: PageConcierge };
+---
+<ConciergePage p={p} />

@@ -1,0 +1,20 @@
+---
+import { RENDEZ_VOUS } from '../data/site';
+export interface Props { commune?: string; cta?: string }
+const { commune, cta = '#formulaire' } = Astro.props;
+---
+<section class="band">
+  <div class="wrap stack-lg">
+    <div class="head">
+      <p class="eyebrow">Comment ça se passe</p>
+      <h2>Tout commence par une rencontre{commune ? `, chez vous à ${commune}` : ', chez vous'}</h2>
+      <p class="lead">On ne confie pas sa maison sur un formulaire. Votre concierge vient vous voir, fait le tour de la villa et vous montre comment il travaille.</p>
+    </div>
+    <ol class="steps">
+      {RENDEZ_VOUS.map((e, i) => (
+        <li><span class="num">{i + 1}</span><h3>{e.titre}</h3><p>{e.texte}</p></li>
+      ))}
+    </ol>
+    <div><a class="btn btn-primary" href={cta}>Rencontrer votre concierge</a></div>
+  </div>
+</section>

@@ -1,0 +1,17 @@
+---
+import { METHODE } from '../data/site';
+---
+<section class="band band-alt">
+  <div class="wrap stack-lg">
+    <div class="head">
+      <p class="eyebrow">Notre méthode</p>
+      <h2>Ce qui se passe chez vous, d’un voyageur à l’autre</h2>
+      <p class="lead">La qualité d’une gestion se joue dans les détails que le propriétaire ne voit pas. Voici les nôtres.</p>
+    </div>
+    <ol class="timeline">
+      {METHODE.map((m) => (
+        <li><h3>{m.titre}</h3><p>{m.texte}</p></li>
+      ))}
+    </ol>
+  </div>
+</section>

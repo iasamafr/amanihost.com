@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import Pillars from '../components/Pillars.astro';
+import Questions from '../components/Questions.astro';
+import Offre from '../components/Offre.astro';
+import Methode from '../components/Methode.astro';
+import RendezVous from '../components/RendezVous.astro';
+import Reviews from '../components/Reviews.astro';
+import Destinations from '../components/Destinations.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { SITE, QUESTIONS } from '../data/site';
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: QUESTIONS.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.r } })),
+};
+---
+<Base
+  title="Propriétaire de villa : confiez-la à AmaniHost"
+  description="Propriétaire d’une villa ? Un concierge AmaniHost installé dans votre commune prend en charge toute la gestion : location, accueil, ménage, entretien."
+  path="/proprietaires/"
+  crumbs={[{ nom: 'Je suis propriétaire', path: '/proprietaires/' }]}
+  jsonld={[faqLd]}
+>
+  <section class="opening">
+    <div class="wrap opening-single">
+      <p class="eyebrow">Je suis propriétaire</p>
+      <h1>Votre villa, <em>entre de bonnes mains</em></h1>
+      <p class="chapo">Vous voulez louer votre villa sans vous en occuper, et sans craindre pour votre maison. Dans chaque commune, un concierge AmaniHost prend tout en charge. {SITE.complement}</p>
+      <div class="cta-actions" style="margin-top:26px">
+        <a class="btn btn-gold" href="#secteurs">Trouver le concierge de ma commune</a>
+        <a class="btn btn-line" href="#questions">Vos questions</a>
+      </div>
+    </div>
+  </section>
+  <Pillars />
+  <div id="questions"><Questions /></div>
+  <Offre />
+  <Methode />
+  <RendezVous cta="#secteurs" />
+  <Reviews />
+  <Destinations titre="Trouvez le concierge de votre commune" />
+  <CtaBand
+    titre="Votre commune n’est pas encore ouverte ?"
+    texte="Écrivez-nous. Nous ouvrons de nouvelles communes chaque saison, et nous vous prévenons dès que votre concierge est installé."
+    href="/contact/"
+    bouton="Nous écrire"
+  />
+</Base>

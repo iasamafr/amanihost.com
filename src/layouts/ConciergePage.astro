@@ -1,0 +1,50 @@
+---
+import Base from './Base.astro';
+import Blocs from '../components/Blocs.astro';
+import ConciergeNav from '../components/ConciergeNav.astro';
+import CtaBand from '../components/CtaBand.astro';
+import type { PageConcierge } from '../data/concierge';
+import { PAGES_CONCIERGE } from '../data/concierge';
+export interface Props { p: PageConcierge }
+const { p } = Astro.props;
+const path = `/devenir-concierge/${p.slug ? p.slug + '/' : ''}`;
+const crumbs = [{ nom: 'Devenir concierge', path: '/devenir-concierge/' }, ...(p.slug ? [{ nom: p.menu, path }] : [])];
+const faq = p.blocs.find((b) => b.type === 'faq');
+const ld = faq && faq.type === 'faq'
+  ? [{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.items.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.r } })) }]
+  : [];
+const suivantes = PAGES_CONCIERGE.filter((x) => x.slug !== p.slug && x.slug !== '');
+---
+<Base title={p.title} description={p.description} path={path} crumbs={crumbs} jsonld={ld} draft={true}>
+  <section class="opening">
+    <div class="wrap opening-single">
+      <p class="eyebrow">AmaniHost · Devenir concierge</p>
+      <h1>{p.h1}</h1>
+      <p class="chapo">{p.chapo}</p>
+      <div class="cta-actions" style="margin-top:26px">
+        <a class="btn btn-gold" href="/devenir-concierge/candidature/">Candidater</a>
+        {p.slug === '' && <a class="btn btn-line" href="/devenir-concierge/le-metier/">Découvrir le métier</a>}
+      </div>
+    </div>
+  </section>
+  <div class="body wrap">
+    <article class="prose concierge-prose">
+      <Blocs blocs={p.blocs} />
+      <section class="bloc">
+        <h2>Pour aller plus loin</h2>
+        <div class="cards">
+          {suivantes.map((x) => (
+            <a class="card" href={`/devenir-concierge/${x.slug}/`}><h3>{x.menu}</h3><span>{x.chapo.split('.')[0]}.</span></a>
+          ))}
+        </div>
+      </section>
+    </article>
+    <aside class="aside"><ConciergeNav /></aside>
+  </div>
+  <CtaBand
+    titre="Votre ville est peut-être encore libre"
+    texte="L’exclusivité est accordée par ville. Envoyez votre candidature : nous vous rappelons pour un premier échange."
+    href="/devenir-concierge/candidature/"
+    bouton="Candidater"
+  />
+</Base>

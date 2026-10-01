@@ -1,0 +1,16 @@
+---
+export interface Props { titre: string; texte: string; href: string; bouton: string; secondaireHref?: string; secondaire?: string }
+const { titre, texte, href, bouton, secondaireHref, secondaire } = Astro.props;
+---
+<section class="cta-band">
+  <div class="wrap cta-inner">
+    <div>
+      <h2>{titre}</h2>
+      <p>{texte}</p>
+    </div>
+    <div class="cta-actions">
+      <a class="btn btn-gold" href={href}>{bouton}</a>
+      {secondaireHref && <a class="btn btn-line" href={secondaireHref}>{secondaire}</a>}
+    </div>
+  </div>
+</section>

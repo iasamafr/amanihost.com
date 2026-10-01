@@ -1,0 +1,158 @@
+---
+import '@fontsource-variable/manrope';
+import '@fontsource/cormorant-garamond/600.css';
+import '@fontsource/cormorant-garamond/600-italic.css';
+import '../styles/global.css';
+import { SITE, SECTEURS } from '../data/site';
+import { COMMUNES } from '../data/communes';
+
+export interface Props {
+  title: string;
+  description: string;
+  path: string; // chemin canonique, ex. /sainte-maxime/
+  crumbs?: { nom: string; path: string }[];
+  jsonld?: object[];
+  draft?: boolean; // bandeau « textes à relire » en préproduction
+  noindex?: boolean;
+}
+
+const { title, description, path, crumbs = [], jsonld = [], draft = false, noindex = false } = Astro.props;
+const canonical = new URL(path, SITE.url).href;
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${SITE.url}/#organization`,
+  name: SITE.marque,
+  url: `${SITE.url}/`,
+  description: SITE.baseline,
+};
+
+const breadcrumbLd = crumbs.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [{ nom: 'Accueil', path: '/' }, ...crumbs].map((c, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: c.nom,
+        item: new URL(c.path, SITE.url).href,
+      })),
+    }
+  : null;
+
+const REGIONS = [...new Set(SECTEURS.map((s) => s.region))];
+const graph = [organization, ...(breadcrumbLd ? [breadcrumbLd] : []), ...jsonld];
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {(noindex || SITE.preprod) && <meta name="robots" content="noindex, nofollow" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content={SITE.marque} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="theme-color" content="#13233f" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    {graph.map((g) => <script type="application/ld+json" set:html={JSON.stringify(g)} />)}
+  </head>
+  <body>
+    {draft && <div class="draft">Préproduction : textes à relire avant mise en ligne</div>}
+    <header class="top">
+      <div class="wrap">
+        <a class="logo" href="/">Amani<span>Host</span></a>
+        <nav class="mainnav" aria-label="Navigation principale">
+          <div class="nav-left">
+            <a class="nav-btn nav-btn-owner" href="/proprietaires/">Je suis propriétaire</a>
+            <a class="nav-btn nav-btn-concierge" href="/devenir-concierge/">Devenir concierge</a>
+          </div>
+          <div class="nav-right">
+            <details class="menu">
+              <summary>Nos secteurs</summary>
+              <div class="menu-panel">
+                {REGIONS.map((r) => (
+                  <div class="menu-group">
+                    <p class="menu-region">{r}</p>
+                    <ul>
+                      {SECTEURS.filter((s) => s.region === r).map((s) => (
+                        <li>
+                          <a href={`/${s.slug}/`}>{s.nom}</a>
+                          {s.ouvert ? <span class="menu-open">ouvert</span> : <span class="menu-soon">bientôt</span>}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </details>
+            <a href="/contact/">Contact</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    {crumbs.length > 0 && (
+      <nav class="crumbs wrap" aria-label="Fil d'Ariane">
+        <ol>
+          <li><a href="/">Accueil</a></li>
+          {crumbs.map((c, i) =>
+            i === crumbs.length - 1 ? <li aria-current="page">{c.nom}</li> : <li><a href={c.path}>{c.nom}</a></li>
+          )}
+        </ol>
+      </nav>
+    )}
+
+    <main>
+      <slot />
+    </main>
+    <script>
+      const menu = document.querySelector<HTMLDetailsElement>('details.menu');
+      if (menu) {
+        document.addEventListener('click', (e) => { if (!menu.contains(e.target as Node)) menu.open = false; });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') menu.open = false; });
+      }
+    </script>
+
+    <footer class="foot">
+      <div class="wrap">
+        <div>
+          <h2>AmaniHost</h2>
+          <p class="foot-sign">{SITE.signature}</p>
+          <p>{SITE.baseline}. Dans chaque commune, un concierge AmaniHost prend en charge toute la gestion de votre villa.</p>
+        </div>
+        <div>
+          <h2>Golfe de Saint-Tropez</h2>
+          <ul>
+            {COMMUNES.filter((c) => c.secteur === 'golfe-de-saint-tropez').map((c) => (
+              <li><a href={`/${c.slug}/`}>Conciergerie {c.nom}</a></li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h2>Nos secteurs</h2>
+          <ul>
+            {SECTEURS.map((s) => <li><a href={`/${s.slug}/`}>{s.nom}</a></li>)}
+          </ul>
+        </div>
+        <div>
+          <h2>Rejoindre AmaniHost</h2>
+          <ul>
+            <li><a href="/devenir-concierge/">Devenir concierge</a></li>
+            <li><a href="/devenir-concierge/le-metier/">Le métier de concierge</a></li>
+            <li><a href="/devenir-concierge/candidature/">Candidater</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="/mentions-legales/">Mentions légales et données personnelles</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

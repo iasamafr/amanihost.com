@@ -1,0 +1,63 @@
+---
+import type { Bloc } from '../data/concierge';
+export interface Props { blocs: Bloc[] }
+const { blocs } = Astro.props;
+---
+{blocs.map((b) => (
+  b.type === 'texte' ? (
+    <section class="bloc"><h2>{b.h2}</h2>{b.paragraphes.map((p) => <p>{p}</p>)}</section>
+  ) : b.type === 'citation' ? (
+    <blockquote class="pull">{b.texte}</blockquote>
+  ) : b.type === 'cartes' ? (
+    <section class="bloc">
+      <h2>{b.h2}</h2>
+      {b.intro && <p class="lead">{b.intro}</p>}
+      <div class="apports">
+        {b.items.map((i) => (
+          <div class="apport"><h3>{i.titre}</h3><p>{i.texte}</p></div>
+        ))}
+      </div>
+    </section>
+  ) : b.type === 'etapes' ? (
+    <section class="bloc">
+      <h2>{b.h2}</h2>
+      {b.intro && <p class="lead">{b.intro}</p>}
+      <ol class="parcours">
+        {b.items.map((i) => (
+          <li>
+            {i.quand && <span class="quand">{i.quand}</span>}
+            <h3>{i.titre}</h3>
+            <p>{i.texte}</p>
+            {i.points && <ul>{i.points.map((p) => <li>{p}</li>)}</ul>}
+          </li>
+        ))}
+      </ol>
+    </section>
+  ) : b.type === 'comparatif' ? (
+    <section class="bloc">
+      <h2>{b.h2}</h2>
+      {b.intro && <p class="lead">{b.intro}</p>}
+      <div class="compare">
+        <table>
+          <thead><tr>{b.colonnes.map((c, i) => <th scope="col" class={i === b.colonnes.length - 1 ? 'us' : ''}>{c}</th>)}</tr></thead>
+          <tbody>
+            {b.lignes.map((l) => (
+              <tr>{l.map((cell, i) => i === 0 ? <th scope="row">{cell}</th> : <td class={i === l.length - 1 ? 'us' : ''}>{cell}</td>)}</tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  ) : b.type === 'liste' ? (
+    <section class="bloc">
+      <h2>{b.h2}</h2>
+      {b.intro && <p class="lead">{b.intro}</p>}
+      <ul class="checklist">{b.items.map((i) => <li>{i}</li>)}</ul>
+    </section>
+  ) : b.type === 'faq' ? (
+    <section class="bloc">
+      <h2>{b.h2}</h2>
+      <div class="faq">{b.items.map((f) => <details><summary>{f.q}</summary><p>{f.r}</p></details>)}</div>
+    </section>
+  ) : null
+))}

@@ -1,0 +1,19 @@
+---
+import { APPORTS } from '../data/concierge';
+---
+<section class="concierge-band">
+  <div class="wrap cb-grid">
+    <div class="cb-text">
+      <p class="eyebrow">Rejoindre le réseau</p>
+      <h2>Devenez concierge de villas AmaniHost</h2>
+      <p>Vous voulez construire votre propre activité, sur le terrain, au contact de belles maisons ? Nous vous apportons ce qui manque à tous ceux qui démarrent : les premiers propriétaires, et la façon de les garder.</p>
+      <div class="cta-actions">
+        <a class="btn btn-gold" href="/devenir-concierge/">Découvrir le programme</a>
+        <a class="btn btn-line" href="/devenir-concierge/candidature/">Candidater</a>
+      </div>
+    </div>
+    <ul class="cb-list">
+      {APPORTS.map((a) => <li><b>{a.titre}</b><span>{a.texte.split('.')[0]}.</span></li>)}
+    </ul>
+  </div>
+</section>

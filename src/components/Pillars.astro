@@ -1,0 +1,23 @@
+---
+import Icon from './Icon.astro';
+import { PILIERS } from '../data/site';
+export interface Props { titre?: string; intro?: string }
+const {
+  titre = 'Ce qui nous distingue',
+  intro = 'AmaniHost est né d’une conciergerie de villas du golfe de Saint-Tropez. Nous avons fait trois choix, et nous nous y tenons.',
+} = Astro.props;
+---
+<section class="band">
+  <div class="wrap stack-lg">
+    <div class="head">
+      <p class="eyebrow">Nos partis pris</p>
+      <h2>{titre}</h2>
+      <p class="lead">{intro}</p>
+    </div>
+    <div class="why">
+      {PILIERS.map((p) => (
+        <div><span class="ico"><Icon name={p.icone} /></span><h3>{p.titre}</h3><p>{p.texte}</p></div>
+      ))}
+    </div>
+  </div>
+</section>

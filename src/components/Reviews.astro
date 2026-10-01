@@ -1,0 +1,24 @@
+---
+import { AVIS, AVIS_SONT_DES_EXEMPLES } from '../data/site';
+---
+{AVIS.length > 0 && (
+  <section class="band band-alt">
+    <div class="wrap stack-lg">
+      <div class="head">
+        <p class="eyebrow">Avis des voyageurs</p>
+        <h2>Ce que les voyageurs disent de nos villas</h2>
+        <p class="lead">Un voyageur satisfait revient, recommande et laisse la maison comme il l’a trouvée.</p>
+        {AVIS_SONT_DES_EXEMPLES && <p class="demo">Maquette : avis d’exemple, à remplacer par de vrais avis Airbnb avant la mise en ligne.</p>}
+      </div>
+      <div class="reviews">
+        {AVIS.map((a) => (
+          <figure class="review">
+            <p class="stars" aria-label={`${a.note} sur 5`}>{'★'.repeat(a.note)}</p>
+            <blockquote>{a.texte}</blockquote>
+            <figcaption>{a.auteur}, {a.lieu} · avis {a.source}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

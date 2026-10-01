@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import Pillars from '../components/Pillars.astro';
+import Questions from '../components/Questions.astro';
+import Offre from '../components/Offre.astro';
+import Methode from '../components/Methode.astro';
+import RendezVous from '../components/RendezVous.astro';
+import Reviews from '../components/Reviews.astro';
+import Destinations from '../components/Destinations.astro';
+import ConciergeBand from '../components/ConciergeBand.astro';
+import { SITE, QUESTIONS } from '../data/site';
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: QUESTIONS.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.r } })),
+};
+---
+<Base
+  title="Conciergerie de villas AmaniHost : entre de bonnes mains"
+  description="Gestion intégrale de villas par un concierge installé dans votre commune : location, accueil, ménage, entretien, comptes rendus. Rencontrez votre concierge."
+  path="/"
+  jsonld={[faqLd]}
+>
+  <section class="opening">
+    <div class="wrap opening-home">
+      <div>
+        <p class="eyebrow">AmaniHost · {SITE.baseline}</p>
+        <h1>Votre villa, <em>entre de bonnes mains</em></h1>
+        <p class="chapo">Dans chaque commune, un concierge AmaniHost prend en charge toute la gestion de votre villa. {SITE.complement}</p>
+      </div>
+      <div class="doors">
+        <a class="door door-main" href="#destinations">
+          <span class="door-k">Propriétaire</span>
+          <b>Confier ma villa</b>
+          <span>Rencontrer le concierge de ma commune</span>
+        </a>
+        <a class="door" href="/devenir-concierge/">
+          <span class="door-k">Futur concierge</span>
+          <b>Devenir concierge AmaniHost</b>
+          <span>Lancer mon activité avec des propriétaires apportés</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Pillars />
+  <Questions />
+  <Offre />
+  <Methode />
+  <RendezVous cta="#destinations" />
+  <Destinations />
+  <Reviews />
+  <ConciergeBand />
+</Base>
