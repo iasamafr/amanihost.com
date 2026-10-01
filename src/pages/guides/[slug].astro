@@ -1,0 +1,142 @@
+---
+import Base from '../../layouts/Base.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { GUIDES, dateFr } from '../../data/guides';
+import { COMMUNES } from '../../data/communes';
+import { SITE } from '../../data/site';
+import type { Guide } from '../../data/types';
+
+export function getStaticPaths() {
+  return GUIDES.map((g) => ({ params: { slug: g.slug }, props: { g } }));
+}
+const { g } = Astro.props as { g: Guide };
+const url = `${SITE.url}/guides/${g.slug}/`;
+const autres = GUIDES.filter((x) => x.slug !== g.slug).slice(0, 3);
+const golfe = COMMUNES.filter((c) => c.secteur === 'golfe-de-saint-tropez');
+const nb = (n: number) => n.toLocaleString('fr-FR');
+const sourcesMarche = [...new Set(golfe.map((c) => `${c.marche.source} (${c.marche.periode})`))];
+
+const ld: object[] = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: g.h1,
+    description: g.description,
+    datePublished: g.publie,
+    dateModified: g.misAJour,
+    inLanguage: 'fr-FR',
+    mainEntityOfPage: url,
+    author: { '@type': 'Person', name: 'Simon Amaniera', jobTitle: 'Fondateur d’AmaniHost' },
+    publisher: { '@id': `${SITE.url}/#organization` },
+  },
+];
+if (g.faq?.length) {
+  ld.push({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: g.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.r } })),
+  });
+}
+---
+<Base
+  title={g.title}
+  description={g.description}
+  path={`/guides/${g.slug}/`}
+  crumbs={[{ nom: 'Guides', path: '/guides/' }, { nom: g.categorie, path: `/guides/${g.slug}/` }]}
+  jsonld={ld}
+>
+  <section class="hero wrap">
+    <p class="eyebrow">Guide · {g.categorie}</p>
+    <h1>{g.h1}</h1>
+    <p class="chapo">{g.chapo}</p>
+    <p class="byline">Par Simon Amaniera, fondateur d’AmaniHost · mis à jour le <time datetime={g.misAJour}>{dateFr(g.misAJour)}</time> · {g.lecture} min de lecture</p>
+  </section>
+
+  <div class="body wrap">
+    <article class="prose">
+      {g.sections.map((sec) => (
+        <section>
+          <h2>{sec.h2}</h2>
+          {sec.paragraphes?.map((t) => <p set:html={t} />)}
+          {sec.liste && <ul class="guide-list">{sec.liste.map((t) => <li set:html={t} />)}</ul>}
+          {sec.tableauCommunes && (
+            <div class="revtable guide-table">
+              <table>
+                <caption class="sr-only">Repères de location saisonnière par commune du golfe de Saint-Tropez</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Commune</th>
+                    <th scope="col">Annonces</th>
+                    <th scope="col">Prix moyen / nuit</th>
+                    <th scope="col">Occupation</th>
+                    <th scope="col">Semaine en été, 4 ch.</th>
+                    <th scope="col">Semaine en été, 6 ch.</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {golfe.map((c) => (
+                    <tr>
+                      <th scope="row"><a href={`/${c.slug}/estimation-revenus/`}>{c.nom}</a></th>
+                      <td>{nb(c.marche.annonces)}</td>
+                      <td>{nb(c.marche.prixNuitUsd)} $</td>
+                      <td>{c.marche.occupation} %</td>
+                      <td>{nb(c.simulateur.semaineHauteSaisonParChambres['4'])} €</td>
+                      <td>{nb(c.simulateur.semaineHauteSaisonParChambres['6'])} €</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <p class="note">Annonces, prix moyen par nuit (en dollars, toutes annonces confondues) et taux d’occupation : {sourcesMarche.join(' ; ')}. Prix d’une semaine en haute saison : repères indicatifs AmaniHost pour une villa avec piscine et climatisation.</p>
+            </div>
+          )}
+        </section>
+      ))}
+
+      {g.faq && g.faq.length > 0 && (
+        <section>
+          <h2>Questions fréquentes</h2>
+          <div class="faq">
+            {g.faq.map((f) => (
+              <details>
+                <summary>{f.q}</summary>
+                <p>{f.r}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {g.avertissement && <p class="note">{g.avertissement}</p>}
+
+      <section>
+        <h2>Sources</h2>
+        <ul class="guide-list sources">
+          {g.sources.map((s) => <li><a href={s.url} rel="noopener" target="_blank">{s.titre}</a></li>)}
+        </ul>
+      </section>
+
+      <section>
+        <h2>À lire aussi</h2>
+        <ul class="links">
+          {g.liens.map((l) => <li><a href={l.href}>{l.texte}</a></li>)}
+          {autres.map((x) => <li><a href={`/guides/${x.slug}/`}>{x.h1}</a></li>)}
+        </ul>
+      </section>
+    </article>
+    <aside class="aside">
+      <LeadForm
+        commune="golfe-de-saint-tropez"
+        communeNom="votre commune"
+        titre="Rencontrer votre concierge"
+        intro="Parlez-nous de votre villa. Votre concierge vous rappelle pour convenir d’un rendez-vous chez vous, sans engagement."
+      />
+    </aside>
+  </div>
+  <CtaBand
+    titre="Combien peut rapporter votre villa ?"
+    texte="Une première estimation en deux minutes, commune par commune, puis une proposition précise après la visite."
+    href="/sainte-maxime/estimation-revenus/"
+    bouton="Estimer mes revenus"
+  />
+</Base>

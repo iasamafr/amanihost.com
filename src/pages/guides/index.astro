@@ -1,0 +1,45 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { GUIDES, dateFr } from '../../data/guides';
+import { SITE } from '../../data/site';
+
+const ld = [{
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Guides pour les propriétaires de villas',
+  url: `${SITE.url}/guides/`,
+  hasPart: GUIDES.map((g) => ({ '@type': 'Article', headline: g.h1, url: `${SITE.url}/guides/${g.slug}/` })),
+}];
+---
+<Base
+  title="Guides pour propriétaires de villas | AmaniHost"
+  description="Réglementation, fiscalité, tarifs de conciergerie, revenus : nos guides pour louer et faire gérer sa villa en location saisonnière."
+  path="/guides/"
+  crumbs={[{ nom: 'Guides', path: '/guides/' }]}
+  jsonld={ld}
+>
+  <section class="hero wrap">
+    <p class="eyebrow">Guides</p>
+    <h1>Louer et faire gérer sa villa : nos guides</h1>
+    <p class="chapo">Réglementation, fiscalité, tarifs, revenus : ce que nous expliquons aux propriétaires au premier rendez-vous, mis par écrit et tenu à jour.</p>
+  </section>
+  <section class="wrap" style="padding-block:44px 64px">
+    <div class="cards guides-list">
+      {GUIDES.map((g) => (
+        <a class="card" href={`/guides/${g.slug}/`}>
+          <p class="eyebrow">{g.categorie}</p>
+          <h2 class="card-title">{g.h1}</h2>
+          <span>{g.description}</span>
+          <span class="meta">Mis à jour le {dateFr(g.misAJour)} · {g.lecture} min de lecture</span>
+        </a>
+      ))}
+    </div>
+  </section>
+  <CtaBand
+    titre="Une question sur votre villa ?"
+    texte="Votre concierge vient vous rencontrer, visite la maison et vous remet une proposition écrite, sans engagement."
+    href="/proprietaires/"
+    bouton="Rencontrer mon concierge"
+  />
+</Base>

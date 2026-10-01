@@ -47,3 +47,28 @@ export type Commune = {
   faq: { q: string; r: string }[];
   voisinesReseau: string[]; // slugs d'autres communes du réseau
 };
+
+// Guides (rubrique éditoriale pour les propriétaires)
+export type GuideSection = {
+  h2: string;
+  paragraphes?: string[]; // HTML simple autorisé (liens, <strong>)
+  liste?: string[];
+  tableauCommunes?: boolean; // insère le tableau des marchés du golfe (données des communes)
+};
+
+export type Guide = {
+  slug: string;
+  title: string; // < 60 caractères
+  description: string; // < 155 caractères
+  h1: string;
+  chapo: string;
+  categorie: 'Réglementation' | 'Tarifs' | 'Revenus' | 'Gestion';
+  publie: string; // AAAA-MM-JJ
+  misAJour: string; // AAAA-MM-JJ
+  lecture: number; // minutes
+  sections: GuideSection[];
+  faq?: { q: string; r: string }[];
+  sources: { titre: string; url: string }[];
+  avertissement?: string;
+  liens: { texte: string; href: string }[]; // maillage vers les pages communes
+};

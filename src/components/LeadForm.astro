@@ -4,17 +4,18 @@ export interface Props {
   communeNom: string;
   projet?: 'gestion' | 'location' | 'vente';
   titre?: string;
+  intro?: string; // remplace la phrase d'introduction (pages sans commune précise)
 }
-const { commune, communeNom, projet = 'gestion', titre = 'Rencontrer votre concierge' } = Astro.props;
+const { commune, communeNom, projet = 'gestion', titre = 'Rencontrer votre concierge', intro } = Astro.props;
 const page = Astro.url.pathname;
 const id = `lead-${commune}`;
 ---
 <div class="panel" id="formulaire">
   <h2>{titre}</h2>
   <p style="font-size:.92rem;color:var(--muted)">
-    {projet === 'vente'
+    {intro ?? (projet === 'vente'
       ? `Décrivez votre villa à ${communeNom}. Un professionnel de l'immobilier local vous recontacte.`
-      : `Parlez-nous de votre villa à ${communeNom}. Votre concierge vous rappelle pour convenir d’un rendez-vous chez vous.`}
+      : `Parlez-nous de votre villa à ${communeNom}. Votre concierge vous rappelle pour convenir d’un rendez-vous chez vous.`)}
   </p>
   <form class="lead-form" id={id} data-commune={commune} data-page={page} novalidate>
     <fieldset>

@@ -458,3 +458,16 @@ h2 { font-size: clamp(2rem, 3.6vw, 2.8rem); }
 .btn-primary:hover { background: transparent; border-color: var(--navy); color: var(--navy); }
 .btn-ghost:hover { background: var(--navy); border-color: var(--navy); color: var(--cream); }
 @media (prefers-reduced-motion: reduce) { .btn, .nav-btn { transition: none; } }
+
+/* Guides */
+.byline { font-size: 0.88rem; color: var(--muted); margin-top: 14px; }
+.guide-list { margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.55rem; }
+.guide-list li::marker { color: var(--gold); }
+.guide-table { margin-top: 6px; }
+.guide-table table { min-width: 640px; font-size: 0.95rem; }
+.guide-table td:last-child { font-family: inherit; font-size: inherit; font-weight: 400; color: inherit; }
+.guide-table th[scope='row'] a { color: var(--navy); }
+.note { font-size: 0.85rem; color: var(--muted); }
+.guides-list .card-title { font-size: 1.35rem; }
+.guides-list .meta { margin-top: auto; padding-top: 8px; font-size: 0.8rem; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
