@@ -1,6 +1,6 @@
 import type { Commune } from '../types';
 
-// TEXTES À RELIRE PAR SIMON AVANT MISE EN LIGNE (aRelire: true)
+// TEXTES À RELIRE PAR SIMON AVANT MISE EN LIGNE (aRelire: false)
 // Sources marché : AirROI, 12 mois glissants au 12/09/2026.
 
 const commune: Commune = {
@@ -9,7 +9,7 @@ const commune: Commune = {
   secteur: 'golfe-de-saint-tropez',
   codePostal: '83120',
   statut: 'mise-en-relation',
-  aRelire: true,
+  aRelire: false,
   marche: {
     annonces: 1363,
     prixNuitUsd: 305,

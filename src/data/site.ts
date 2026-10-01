@@ -3,7 +3,7 @@
 
 export const SITE = {
   // PRÉPRODUCTION : true = site non indexé par Google (noindex + robots.txt bloquant). Passer à false au lancement.
-  preprod: true,
+  preprod: false,
   url: 'https://amanihost.com',
   marque: 'AmaniHost',
   signature: 'Votre villa, entre de bonnes mains.',

@@ -49,7 +49,7 @@ const secteurDeCommune = c ? SECTEURS.find((x) => x.slug === c.secteur)! : undef
 const voisinesReseau = c ? c.voisinesReseau.map((s) => COMMUNES.find((x) => x.slug === s)).filter((x): x is Commune => !!x) : [];
 ---
 {kind === 'secteur' && secteur && (
-  <Base title={secteur.title} description={secteur.description} path={`/${secteur.slug}/`} crumbs={[{ nom: 'Nos secteurs', path: '/#secteurs' }, { nom: secteur.nom, path: `/${secteur.slug}/` }]}>
+  <Base title={secteur.title} description={secteur.description} path={`/${secteur.slug}/`} noindex={!secteur.ouvert} crumbs={[{ nom: 'Nos secteurs', path: '/#secteurs' }, { nom: secteur.nom, path: `/${secteur.slug}/` }]}>
     <section class="opening">
       <div class="wrap opening-single">
         <p class="eyebrow">{secteur.region} · {secteur.departement}</p>

@@ -11,7 +11,7 @@ const commune: Commune = {
   secteur: 'golfe-de-saint-tropez',
   codePostal: '83310',
   statut: 'mise-en-relation',
-  aRelire: true,
+  aRelire: false,
   marche: { annonces: 817, prixNuitUsd: 401, occupation: 35, source: 'AirROI', periode: '12 mois glissants, septembre 2026' },
   simulateur: { semaineHauteSaisonParChambres: { '3': 7000, '4': 9500, '5': 13000, '6': 17000 }, semainesLoueesParDefaut: 9, commission: 0.2 },
   accueil: {

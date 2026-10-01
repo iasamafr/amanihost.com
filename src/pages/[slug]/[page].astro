@@ -33,6 +33,10 @@ if (p.projet !== 'vente') {
   });
 }
 
+// Page trop mince (texte propre < 120 mots) : non indexée tant qu'elle n'est pas enrichie
+const motsPropres = [p.chapo, ...p.sections.flatMap((x) => [x.h2, ...x.paragraphes])].join(' ').split(/\s+/).length;
+const mince = motsPropres < 120 && p.type !== 'simulateur'; // le simulateur porte sa propre valeur
+
 // Liens vers les pages sœurs, pour le maillage interne en fin d'article
 const soeurs = c.pages.filter((x) => x.slug !== p.slug).slice(0, 3);
 ---
@@ -47,6 +51,7 @@ const soeurs = c.pages.filter((x) => x.slug !== p.slug).slice(0, 3);
   ]}
   jsonld={ld}
   draft={c.aRelire}
+  noindex={mince}
 >
   <section class="hero wrap">
     <p class="eyebrow">{estVoisine ? `Près de ${c.nom}` : estQuartier ? `Quartier de ${c.nom}` : `Conciergerie ${c.nom}`}</p>
