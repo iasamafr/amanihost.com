@@ -1,0 +1,423 @@
+{
+  "source": "Profil hôte Airbnb AmaniHost",
+  "extrait_le": "2026-10-01",
+  "perimetre": "Avis des séjours 2026 (24 avis, de mai à septembre 2026)",
+  "regle_affichage": "Prénom + mois + annonce + mention « Avis Airbnb ». Texte d'origine non modifié ; traduction française indiquée comme traduction.",
+  "avis": [
+    {
+      "id": "2026-01",
+      "prenom": "Katarína",
+      "sejour": "20–26 sept. 2026",
+      "mois_affichage": "septembre 2026",
+      "annonce": "Villa Green Beach, Plage de Gigaro. Front de Mer",
+      "note": 5,
+      "langue": "en",
+      "texte_original": "Superb location! Very practical house with amenities like at home. Big surprise was huge stand up paddle and petanque field. Pool is also very large and high quality. We stayed towards end of September, the best time to stay! Sea was warm and all restaurants and little shop just 5min.walk is still open. You can walk every morning to get fresh pastries. Garden is very large and well maintained. Communication with concierge was very prompt and customer oriented. Thank you!",
+      "texte_fr": "Superbe location ! Maison très pratique, équipée comme à la maison. Grosse surprise : un immense paddle et un terrain de pétanque. La piscine est aussi très grande et de grande qualité. Nous sommes venus fin septembre, la meilleure période ! La mer était chaude et tous les restaurants, ainsi que la petite épicerie à 5 minutes à pied, étaient encore ouverts. On peut aller chercher des viennoiseries fraîches à pied chaque matin. Le jardin est très grand et bien entretenu. La communication avec la conciergerie a été très réactive et tournée vers le client. Merci !",
+      "themes": [
+        "réactivité conciergerie",
+        "entretien du jardin",
+        "équipements",
+        "arrière-saison"
+      ],
+      "priorite_pages_proprietaires": "haute",
+      "affiche_sur_site": true
+    },
+    {
+      "id": "2026-02",
+      "prenom": "Wolf",
+      "sejour": "13–23 sept. 2026",
+      "mois_affichage": "septembre 2026",
+      "annonce": "Villa Horlou — Piscine, vue mer, terrasse & jardin",
+      "note": 5,
+      "langue": "de",
+      "texte_original": "Wir haben uns in diesem Haus sehr wohl gefühlt. Es ist sehr geschmackvoll und stilsicher eingerichtet. Man hat einen tollen Ausblick auf das Meer, mit Sonne von morgens bis abends. Es liegt ideal zwischen dem Dorf und den Stränden. Die Kommunikation war ganz unkompliziert und man hat sehr flexibel auf alles reagiert. Vielen Dank für die schöne Zeit. Es hat sehr viel Spaß gemacht in diesem Haus zu wohnen.",
+      "texte_fr": "Nous nous sommes sentis très bien dans cette maison. Elle est décorée avec beaucoup de goût et un style très sûr. On a une vue superbe sur la mer, avec du soleil du matin au soir. Elle est idéalement située entre le village et les plages. La communication a été très simple et on a réagi à tout avec beaucoup de souplesse. Merci beaucoup pour ce beau séjour. Nous avons pris énormément de plaisir à vivre dans cette maison.",
+      "themes": [
+        "communication",
+        "souplesse",
+        "décoration",
+        "vue mer"
+      ],
+      "priorite_pages_proprietaires": "haute",
+      "affiche_sur_site": true
+    },
+    {
+      "id": "2026-03",
+      "prenom": "Alexander",
+      "sejour": "5–12 sept. 2026",
+      "mois_affichage": "septembre 2026",
+      "annonce": "Villa Horlou — Piscine, vue mer, terrasse & jardin",
+      "note": 5,
+      "langue": "de",
+      "texte_original": "Wirklich Mega Blick auf das Meer!",
+      "texte_fr": "Une vue vraiment incroyable sur la mer !",
+      "themes": [
+        "vue mer"
+      ],
+      "priorite_pages_proprietaires": "basse",
+      "affiche_sur_site": false
+    },
+    {
+      "id": "2026-04",
+      "prenom": "Fiona",
+      "sejour": "29 août – 12 sept. 2026",
+      "mois_affichage": "septembre 2026",
+      "annonce": "Villa Green Beach, Plage de Gigaro. Front de Mer",
+      "note": 5,
+      "langue": "en",
+      "texte_original": "We had a wonderful time in this amazing location.",
+      "texte_fr": "Nous avons passé un séjour merveilleux dans ce lieu exceptionnel.",
+      "themes": [
+        "emplacement"
+      ],
+      "priorite_pages_proprietaires": "basse",
+      "affiche_sur_site": false
+    },
+    {
+      "id": "2026-05",
+      "prenom": "Nam",
+      "sejour": "30 août – 7 sept. 2026",
+      "mois_affichage": "septembre 2026",
+      "annonce": "Villa Design • Piscine à débordement • Plage 900m",
+      "note": 5,
+      "langue": "de",
+      "texte_original": "Super Unterkunft! Traumhafte Terrasse und super Lage",
+      "texte_fr": "Super logement ! Terrasse de rêve et emplacement idéal.",
+      "themes": [
+        "terrasse",
+        "emplacement"
+      ],
+      "priorite_pages_proprietaires": "basse",
+      "affiche_sur_site": false
+    },
+    {
+      "id": "2026-06",
+      "prenom": "Jon",
+      "sejour": "22–30 août 2026",
+      "mois_affichage": "août 2026",
+      "annonce": "Villa Design • Piscine à débordement • Plage 900m",
+      "note": 5,
+      "langue": "en",
+      "texte_original": "We had a great few days staying at this place. Thanks for all your help.",
+      "texte_fr": "Nous avons passé de très bons jours ici. Merci pour toute votre aide.",
+      "themes": [
+        "aide de l'équipe"
+      ],
+      "priorite_pages_proprietaires": "moyenne",
+      "affiche_sur_site": false
+    },
+    {
+      "id": "2026-07",
+      "prenom": "Xavier",
+      "sejour": "16–29 août 2026",
+      "mois_affichage": "août 2026",
+      "annonce": "Villa Horlou — Piscine, vue mer, terrasse & jardin",
+      "note": 5,
+      "langue": "fr",
+      "texte_original": "La maison est superbe, très bien située et bien équipée. Nous avons passé 15 jours incroyables. La vue est top, la piscine canon et la pièce de vie également. Les contacts avec Simon et Roméo ont toujours été fluides et ont permis que le séjour se déroule dans ces conditions! Nous reviendrons avec plaisir.",
+      "texte_fr": null,
+      "themes": [
+        "interlocuteurs nommés",
+        "fluidité",
+        "fidélisation"
+      ],
+      "priorite_pages_proprietaires": "haute",
+      "affiche_sur_site": true
+    },
+    {
+      "id": "2026-08",
+      "prenom": "Irma",
+      "sejour": "15–22 août 2026",
+      "mois_affichage": "août 2026",
+      "annonce": "Villa Design • Piscine à débordement • Plage 900m",
+      "note": 5,
+      "langue": "en",
+      "texte_original": "We absolutely loved this place. It's located in a quiet, secure neighborhood on the edge of La Croix-Valmer, offering a wonderful sense of privacy without feeling isolated. The neighbors were very discreet. The property has plenty of outdoor space to enjoy, with benches, hammocks, and one of the best pools we've ever had at a holiday rental in the South of France. I'll especially miss my early morning and late evening swims. There's a pleasant walking path to the beach, where you'll find beautiful, clear water and several excellent local restaurants. The interior is spacious and full of authentic 1960s charm. I'd recommend it to anyone who appreciates character and authenticity over ultra-modern luxury. We would definitely stay here again.",
+      "texte_fr": "Nous avons adoré cet endroit. Il se trouve dans un quartier calme et sûr, en bordure de La Croix-Valmer, avec une vraie intimité sans sentiment d'isolement. Les voisins ont été très discrets. La propriété offre beaucoup d'espace extérieur, avec des bancs, des hamacs et l'une des meilleures piscines que nous ayons eues en location de vacances dans le sud de la France. Mes baignades tôt le matin et tard le soir vont particulièrement me manquer. Un agréable sentier mène à la plage, où l'on trouve une eau magnifique et limpide et plusieurs excellents restaurants. L'intérieur est spacieux et plein du charme authentique des années 1960. Je la recommande à tous ceux qui préfèrent le caractère et l'authenticité au luxe ultra-moderne. Nous y reviendrions sans hésiter.",
+      "themes": [
+        "intimité",
+        "piscine",
+        "maison de caractère",
+        "La Croix-Valmer"
+      ],
+      "priorite_pages_proprietaires": "moyenne",
+      "note_usage": "Bon pour une page commune La Croix-Valmer ; montre qu'une villa ancienne bien tenue se loue très bien.",
+      "affiche_sur_site": false
+    },
+    {
+      "id": "2026-09",
+      "prenom": "Clément",
+      "sejour": "1–15 août 2026",
+      "mois_affichage": "août 2026",
+      "annonce": "Villa Clara – Piscine, Clim & Charme Provençal",
+      "note": 4,
+      "langue": "fr",
+      "texte_original": "Très bon séjour conciergerie très agréable",
+      "texte_fr": null,
+      "themes": [
+        "conciergerie"
+      ],
+      "priorite_pages_proprietaires": "basse",
+      "affiche_sur_site": false
+    },
+    {
+      "id": "2026-10",
+      "prenom": "Alexandre",
+      "sejour": "8–15 août 2026",
+      "mois_affichage": "août 2026",
+      "annonce": "Villa Design • Piscine à débordement • Plage 900m",
+      "note": 5,
+      "langue": "fr",
+      "texte_original": "Je reviendrai avec grand plaisir dans cette villa à la fois cosy et sympathique, avec une superbe piscine à debordements, le tout dans un environnement incroyable",
+      "texte_fr": null,
+      "themes": [
+        "fidélisation",
+        "piscine"
+      ],
+      "priorite_pages_proprietaires": "basse",
+      "affiche_sur_site": false
+    },
+    {
+      "id": "2026-11",
+      "prenom": "Urs",
+      "sejour": "1–8 août 2026",
+      "mois_affichage": "août 2026",
+      "annonce": "Villa Bougainville, Cœur Village, piscine & plages",
+      "note": 5,
+      "langue": "de",
+      "texte_original": "Sehr schöne Villa mit tollem Pool in Fussdistanz zum Zentrum. Gut ausgestattete Küche, hübsche Zimmer mit guten Betten. Sehr aufmerksame Betreuung durch AmaniHost. Das Problem mit der Klimaanlage wurde höchster Priorität behoben. Kleiner Minuspunkt - wenige schattige Plätze draussen.",
+      "texte_fr": "Très belle villa avec une superbe piscine, à distance de marche du centre. Cuisine bien équipée, jolies chambres avec de bons lits. Accompagnement très attentionné de la part d'AmaniHost. Le problème de climatisation a été réglé en priorité absolue. Petit bémol : peu d'endroits ombragés à l'extérieur.",
+      "themes": [
+        "AmaniHost cité",
+        "incident traité en priorité",
+        "attention"
+      ],
+      "priorite_pages_proprietaires": "haute",
+      "note_usage": "Meilleure preuve pour un propriétaire : une panne réglée vite, et le voyageur met quand même 5/5.",
+      "affiche_sur_site": true
+    },
+    {
+      "id": "2026-12",
+      "prenom": "Lars",
+      "sejour": "1–8 août 2026",
+      "mois_affichage": "août 2026",
+      "annonce": "Villa Design • Piscine à débordement • Plage 900m",
+      "note": 5,
+      "langue": "en",
+      "texte_original": "We (family of 5, including 3 younger children) were very happy with our stay and would definetely return. Villa is as described; good amount of space, private and peaceful setting, great pool and deck, walkable to a beach (driving is better), kitchen has everything for home cooking. Responsive, helpful and friendly host. The check-in and check-out was smooth and easy. Good location to explore the area's beaches, restaurants, vineyards if you have a car.",
+      "texte_fr": "Nous (famille de 5, dont 3 jeunes enfants) avons été très contents de notre séjour et reviendrions sans hésiter. La villa est conforme à la description : bel espace, cadre privé et paisible, superbe piscine et terrasse, plage accessible à pied (en voiture, c'est plus pratique), cuisine équipée de tout le nécessaire. Hôte réactif, serviable et sympathique. L'arrivée et le départ se sont faits simplement et sans accroc. Bon point de départ pour découvrir les plages, restaurants et vignobles des environs si l'on a une voiture.",
+      "themes": [
+        "conforme à l'annonce",
+        "arrivée et départ fluides",
+        "réactivité",
+        "famille"
+      ],
+      "priorite_pages_proprietaires": "haute",
+      "affiche_sur_site": true
+    },
+    {
+      "id": "2026-13",
+      "prenom": "Frank",
+      "sejour": "19 juil. – 2 août 2026",
+      "mois_affichage": "juillet 2026",
+      "annonce": "Villa La Grande Bleue - Vue mer 180° Plage Privée",
+      "note": 5,
+      "langue": "en",
+      "texte_original": "We had a fantastic stay at the villa. The location is exceptional, with stunning sea and island views, direct water access, and a private beach that made every day feel special. The villa is beautiful, comfortable, and very well equipped. Our hosts were friendly and responsive throughout our stay. We would gladly return here and highly recommend a stay.",
+      "texte_fr": "Nous avons passé un séjour fantastique dans cette villa. L'emplacement est exceptionnel, avec une vue magnifique sur la mer et les îles, un accès direct à l'eau et une plage privée qui rendait chaque journée spéciale. La villa est belle, confortable et très bien équipée. Nos hôtes ont été sympathiques et réactifs tout au long du séjour. Nous reviendrions avec plaisir et la recommandons vivement.",
+      "themes": [
+        "villa d'exception",
+        "réactivité",
+        "pieds dans l'eau"
+      ],
+      "priorite_pages_proprietaires": "moyenne",
+      "affiche_sur_site": false
+    },
+    {
+      "id": "2026-14",
+      "prenom": "Marike",
+      "sejour": "25 juil. – 2 août 2026",
+      "mois_affichage": "juillet 2026",
+      "annonce": "Villa Horlou — Piscine, vue mer, terrasse & jardin",
+      "note": 5,
+      "langue": "nl",
+      "texte_original": "Prachtig huis met geweldig uitzicht!! Rustige mooie buurt vlak bij zee. En Saint Tropez host. Prettige en zeer hulpvaardiger host.",
+      "texte_fr": "Maison magnifique avec une vue incroyable !! Quartier calme et joli, tout près de la mer. [Passage peu clair : « En Saint Tropez host »]. Hôte agréable et très serviable.",
+      "themes": [
+        "vue mer",
+        "serviabilité"
+      ],
+      "priorite_pages_proprietaires": "basse",
+      "note_usage": "Non affiché : phrase peu claire.",
+      "affiche_sur_site": false
+    },
+    {
+      "id": "2026-15",
+      "prenom": "Marc",
+      "sejour": "11–25 juil. 2026",
+      "mois_affichage": "juillet 2026",
+      "annonce": "Villa familiale Front de Mer accès privé, plage",
+      "note": 5,
+      "langue": "nl",
+      "texte_original": "heerlijk familie huis met direct toegang tot het strand en met waanzinnig uitzicht!",
+      "texte_fr": "Merveilleuse maison familiale avec accès direct à la plage et une vue folle !",
+      "themes": [
+        "famille",
+        "pieds dans l'eau"
+      ],
+      "priorite_pages_proprietaires": "basse",
+      "affiche_sur_site": false
+    },
+    {
+      "id": "2026-16",
+      "prenom": "Morgane",
+      "sejour": "18–25 juil. 2026",
+      "mois_affichage": "juillet 2026",
+      "annonce": "Villa Bougainville, Cœur Village, piscine & plages",
+      "note": 5,
+      "langue": "fr",
+      "texte_original": "On a passé une très belle semaine de vacances! C’est sur que le tarif est élevé mais il y a l’emplacement proche de la mer (qqs min en voiture pr rejoindre la plage du débarquement), la climatisation et la piscine qui font que c’est une maison très agréable. Le seul point « négatif » mais franchement pas très dérangeant pour nous : conteneur à verre à côté et entrepôt de l’autre côté de la route donc qqs bruits par la. Au final, je recommanderai cette maison et les personnes qui s’occupent de la location.",
+      "texte_fr": null,
+      "themes": [
+        "prix élevé assumé",
+        "recommande l'équipe"
+      ],
+      "priorite_pages_proprietaires": "moyenne",
+      "note_usage": "Utile pour la page simulateur/prix : le voyageur trouve le tarif élevé et met quand même 5/5.",
+      "affiche_sur_site": false
+    },
+    {
+      "id": "2026-17",
+      "prenom": "Matthew",
+      "sejour": "18–25 juil. 2026",
+      "mois_affichage": "juillet 2026",
+      "annonce": "Villa Horlou — Piscine, vue mer, terrasse & jardin",
+      "note": 5,
+      "langue": "en",
+      "texte_original": "Top location Clean and comfortable villa",
+      "texte_fr": "Emplacement au top. Villa propre et confortable.",
+      "themes": [
+        "propreté"
+      ],
+      "priorite_pages_proprietaires": "moyenne",
+      "affiche_sur_site": false
+    },
+    {
+      "id": "2026-18",
+      "prenom": "Mason",
+      "sejour": "4–12 juil. 2026",
+      "mois_affichage": "juillet 2026",
+      "annonce": "Villa Horlou — Piscine, vue mer, terrasse & jardin",
+      "note": 5,
+      "langue": "en",
+      "texte_original": "Wonderful view and location - fantastic start to finish",
+      "texte_fr": "Vue et emplacement magnifiques – parfait du début à la fin.",
+      "themes": [
+        "du début à la fin"
+      ],
+      "priorite_pages_proprietaires": "moyenne",
+      "affiche_sur_site": false
+    },
+    {
+      "id": "2026-19",
+      "prenom": "Andrea",
+      "sejour": "4–11 juil. 2026",
+      "mois_affichage": "juillet 2026",
+      "annonce": "Villa familiale Front de Mer accès privé, plage",
+      "note": 5,
+      "langue": "en",
+      "texte_original": "Great location and view, awesome beach with direct access!",
+      "texte_fr": "Super emplacement et superbe vue, plage géniale avec accès direct !",
+      "themes": [
+        "pieds dans l'eau"
+      ],
+      "priorite_pages_proprietaires": "basse",
+      "affiche_sur_site": false
+    },
+    {
+      "id": "2026-20",
+      "prenom": "D.",
+      "sejour": "2–10 juil. 2026",
+      "mois_affichage": "juillet 2026",
+      "annonce": "Luxury Villa nested in trees: 4 Bedrooms with Pool",
+      "note": 5,
+      "langue": "nl",
+      "texte_original": "Het is een heel privé huis, aangenaam zwembad waarin je baantjes kan trekken. Rustig en ruim. Alle nodige voorziening en op wandelafstand van strand - 400m",
+      "texte_fr": "C'est une maison très privée, avec une piscine agréable où l'on peut faire des longueurs. Calme et spacieuse. Tous les équipements nécessaires, et la plage à distance de marche (400 m).",
+      "themes": [
+        "intimité",
+        "équipements"
+      ],
+      "priorite_pages_proprietaires": "basse",
+      "affiche_sur_site": false
+    },
+    {
+      "id": "2026-21",
+      "prenom": "Alldora",
+      "sejour": "4–5 juil. 2026",
+      "mois_affichage": "juillet 2026",
+      "annonce": "Villa Clara – Piscine, Clim & Charme Provençal",
+      "note": 5,
+      "langue": "en",
+      "texte_original": "Very cozy villa. Very clean and comfortable. Thank you.",
+      "texte_fr": "Villa très cosy. Très propre et confortable. Merci.",
+      "themes": [
+        "propreté"
+      ],
+      "priorite_pages_proprietaires": "moyenne",
+      "affiche_sur_site": false
+    },
+    {
+      "id": "2026-22",
+      "prenom": "Halldora",
+      "sejour": "27 juin – 4 juil. 2026",
+      "mois_affichage": "juin 2026",
+      "annonce": "Villa La Grande Bleue - Vue mer 180° Plage Privée",
+      "note": 5,
+      "langue": "en",
+      "texte_original": "Incredible villa! The view, private beach and the villa itself are spectacular! Thank you 👏",
+      "texte_fr": "Villa incroyable ! La vue, la plage privée et la villa elle-même sont spectaculaires ! Merci 👏",
+      "themes": [
+        "villa d'exception"
+      ],
+      "priorite_pages_proprietaires": "basse",
+      "affiche_sur_site": false
+    },
+    {
+      "id": "2026-23",
+      "prenom": "Matthias",
+      "sejour": "14–21 juin 2026",
+      "mois_affichage": "juin 2026",
+      "annonce": "Villa La Quinta • Luxe moderne Rooftop & vue Mer",
+      "note": 5,
+      "langue": "en",
+      "texte_original": "Great villa, and they took well care of us from the check in until check out!",
+      "texte_fr": "Superbe villa, et on a pris grand soin de nous de l'arrivée jusqu'au départ !",
+      "themes": [
+        "soin",
+        "de l'arrivée au départ"
+      ],
+      "priorite_pages_proprietaires": "haute",
+      "note_usage": "Fait écho mot pour mot à la signature : « de la première réservation au départ du dernier voyageur ».",
+      "affiche_sur_site": true
+    },
+    {
+      "id": "2026-24",
+      "prenom": "Anna",
+      "sejour": "23–30 mai 2026",
+      "mois_affichage": "mai 2026",
+      "annonce": "Villa La Quinta • Luxe moderne Rooftop & vue Mer",
+      "note": 5,
+      "langue": "pl",
+      "texte_original": "Najpiękniejsza, najbardziej fashion villa, w której kiedykolwiek byłam. Niesamowity wystrój, wszystko piękne i przemyślane.",
+      "texte_fr": "La villa la plus belle et la plus « fashion » dans laquelle j'aie jamais séjourné. Décoration incroyable, tout est beau et pensé.",
+      "themes": [
+        "décoration",
+        "villa d'exception"
+      ],
+      "priorite_pages_proprietaires": "basse",
+      "affiche_sur_site": false
+    }
+  ]
+}

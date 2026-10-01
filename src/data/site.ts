@@ -229,10 +229,15 @@ export const RENDEZ_VOUS = [
   { titre: 'Votre villa est entre de bonnes mains', texte: 'Mise en ligne, premiers voyageurs, premiers comptes rendus. Vous n’avez plus rien à gérer.' },
 ];
 
-// Avis : pour la maquette, AVIS D'EXEMPLE à remplacer par de vrais avis voyageurs (Airbnb) avant la mise en ligne.
-export const AVIS_SONT_DES_EXEMPLES = true;
-export const AVIS: { texte: string; auteur: string; lieu: string; source: string; note: number }[] = [
-  { texte: 'Accueil parfait, la villa était impeccable et exactement comme sur les photos. Un vrai suivi pendant tout le séjour.', auteur: 'Exemple', lieu: 'La Croix-Valmer', source: 'Airbnb', note: 5 },
-  { texte: 'Un souci avec la piscine réglé dans la matinée. On sent que la maison est suivie de près.', auteur: 'Exemple', lieu: 'Cavalaire-sur-Mer', source: 'Airbnb', note: 5 },
-  { texte: 'Linge de qualité, maison très propre, conseils précieux pour les plages et les restaurants.', auteur: 'Exemple', lieu: 'La Croix-Valmer', source: 'Airbnb', note: 5 },
+// Avis : vrais avis voyageurs Airbnb (séjours 2026), prénom seul, texte d'origine.
+// Avis en langue étrangère : traduction française affichée, langue d'origine indiquée.
+// Source complète : avis-airbnb-2026.json (24 avis, extraits le 1er octobre 2026).
+export const AVIS_SONT_DES_EXEMPLES = false;
+export const AVIS: { texte: string; auteur: string; lieu: string; source: string; note: number; date: string; traduitDe?: string }[] = [
+  { texte: 'Très belle villa avec une superbe piscine, à distance de marche du centre. Cuisine bien équipée, jolies chambres avec de bons lits. Accompagnement très attentionné de la part d’AmaniHost. Le problème de climatisation a été réglé en priorité absolue. Petit bémol : peu d’endroits ombragés à l’extérieur.', auteur: 'Urs', lieu: 'Villa Bougainville', source: 'Airbnb', note: 5, date: 'août 2026', traduitDe: 'l’allemand' },
+  { texte: 'Superbe villa, et on a pris grand soin de nous de l’arrivée jusqu’au départ !', auteur: 'Matthias', lieu: 'Villa La Quinta, Cavalaire-sur-Mer', source: 'Airbnb', note: 5, date: 'juin 2026', traduitDe: 'l’anglais' },
+  { texte: 'La maison est superbe, très bien située et bien équipée. Nous avons passé 15 jours incroyables. La vue est top, la piscine canon et la pièce de vie également. Les contacts avec Simon et Roméo ont toujours été fluides et ont permis que le séjour se déroule dans ces conditions ! Nous reviendrons avec plaisir.', auteur: 'Xavier', lieu: 'Villa Horlou', source: 'Airbnb', note: 5, date: 'août 2026' },
+  { texte: 'Superbe location ! Maison très pratique, équipée comme à la maison. Grosse surprise : un immense paddle et un terrain de pétanque. La piscine est aussi très grande et de grande qualité. (…) Le jardin est très grand et bien entretenu. La communication avec la conciergerie a été très réactive et tournée vers le client. Merci !', auteur: 'Katarína', lieu: 'Villa Green Beach, Gigaro', source: 'Airbnb', note: 5, date: 'septembre 2026', traduitDe: 'l’anglais' },
+  { texte: '(…) La villa est conforme à la description : bel espace, cadre privé et paisible, superbe piscine et terrasse (…), cuisine équipée de tout le nécessaire. Hôte réactif, serviable et sympathique. L’arrivée et le départ se sont faits simplement et sans accroc. (…)', auteur: 'Lars', lieu: 'Villa Design, La Croix-Valmer', source: 'Airbnb', note: 5, date: 'août 2026', traduitDe: 'l’anglais' },
+  { texte: 'Nous nous sommes sentis très bien dans cette maison. Elle est décorée avec beaucoup de goût et un style très sûr. (…) La communication a été très simple et on a réagi à tout avec beaucoup de souplesse. Merci beaucoup pour ce beau séjour. (…)', auteur: 'Wolf', lieu: 'Villa Horlou', source: 'Airbnb', note: 5, date: 'septembre 2026', traduitDe: 'l’allemand' },
 ];

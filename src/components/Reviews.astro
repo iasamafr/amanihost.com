@@ -15,7 +15,7 @@ import { AVIS, AVIS_SONT_DES_EXEMPLES } from '../data/site';
           <figure class="review">
             <p class="stars" aria-label={`${a.note} sur 5`}>{'★'.repeat(a.note)}</p>
             <blockquote>{a.texte}</blockquote>
-            <figcaption>{a.auteur}, {a.lieu} · avis {a.source}</figcaption>
+            <figcaption>{a.auteur}, {a.lieu} · avis {a.source}, {a.date}{a.traduitDe && ` · traduit de ${a.traduitDe}`}</figcaption>
           </figure>
         ))}
       </div>
