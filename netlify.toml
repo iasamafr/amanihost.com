@@ -1,0 +1,10 @@
+# Hébergement Netlify d'amanihost.com (site statique Astro + fonctions des formulaires)
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[functions]
+  directory = "netlify/functions"

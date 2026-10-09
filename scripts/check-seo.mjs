@@ -9,7 +9,7 @@ const files = [];
   for (const f of readdirSync(d)) {
     const p = join(d, f);
     if (statSync(p).isDirectory()) walk(p);
-    else if (p.endsWith('.html')) files.push(p);
+    else if (p.endsWith('.html') && !p.endsWith('__forms.html')) files.push(p); // __forms.html : déclaration Netlify Forms, pas une page
   }
 })(DIST);
 
